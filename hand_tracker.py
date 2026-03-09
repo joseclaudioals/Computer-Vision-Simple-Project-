@@ -9,7 +9,7 @@ while True:
     if not sucesso:
         break
 
-    cv2.imshow('img', cv2.resize(img, (640, 480)))
+    cv2.imshow('img', img)
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
 
