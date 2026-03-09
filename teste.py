@@ -2,6 +2,7 @@ import cv2
 import mediapipe as mp
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+from draw import draw_landmarks_on_image
 
 base_options = python.BaseOptions(model_asset_path="hand_landmarker.task")
 options = vision.HandLandmarkerOptions(base_options=base_options, num_hands=2)
@@ -11,5 +12,8 @@ img = mp.Image.create_from_file("imagens/img.png")
 
 detection_result = detector.detect(img)
 
-annotade_image = draw_landmarks_on_image(img.numpy_view(), detection_result)
-cv2.imshow(cv2.cvtColor(annotade_image, cv2.COLOR_RGB2BGR))
+annotated_image = draw_landmarks_on_image(img.numpy_view(), detection_result)
+cv2.imshow("Tracking", cv2.cvtColor(annotated_image, cv2.COLOR_RGB2BGR))
+
+cv2.waitKey(0)
+cv2.destroyAllWindows()
